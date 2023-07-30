@@ -1,4 +1,4 @@
-package pathandqueryparam;
+package pathAndQueryparam;
 
 import org.testng.annotations.Test;
 
@@ -7,7 +7,7 @@ import static io.restassured.RestAssured.*;
 
 import java.util.HashMap;
 
-public class EchoGetRequest {
+public class EchoGetRequestForMultipleQueryParams {
 	
 	
 	@Test
@@ -28,9 +28,9 @@ public class EchoGetRequest {
 		
 		.queryParams(qp)
 		
-//		.queryParams("foo1","bar1", "foo2", "bar2")
+//		.queryParams("foo1","bar1", "foo2", "bar2")    //To pass query params in sequence.
 		
-		.header("x-api-key", "PMAK-64ba98e472efea0042e0d58f-0cfa5114cafd0db13eb718a09f04be5a4e")
+		.header("x-api-key", "PMAK-64c51655bec46e002a654757-37a9270636fa3b68a00be70498702691c3")
 		
 		.log().all()
 		.when()

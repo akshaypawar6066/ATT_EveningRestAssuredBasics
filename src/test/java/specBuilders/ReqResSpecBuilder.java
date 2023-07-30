@@ -1,4 +1,4 @@
-package specbuilders;
+package specBuilders;
 
 import static io.restassured.RestAssured.given;
 
@@ -17,8 +17,9 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
 public class ReqResSpecBuilder {
-	RequestSpecification requestspecification;
+	RequestSpecification requestSpecification;
 	ResponseSpecification responseSpecification;
+	String messagevalue;
 	
 	@BeforeClass
 	public void initReqAndResponseSpec()
@@ -26,37 +27,25 @@ public class ReqResSpecBuilder {
 //		common properties for request 
 		RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
 		
-		requestSpecBuilder.setBaseUri("https://petstore.swagger.io/v2");
-		
-		requestSpecBuilder.log(LogDetail.ALL);
-		
-		 requestspecification = requestSpecBuilder.build();
+	
+		requestSpecification=requestSpecBuilder.setBaseUri("https://petstore.swagger.io/v2").setContentType(ContentType.JSON).log(LogDetail.ALL).build();
 		
 //		common properties for Response
 		
 		ResponseSpecBuilder responseSpecBuilder = new ResponseSpecBuilder();
 		
-		responseSpecBuilder.expectStatusCode(200);
-		
-		responseSpecBuilder.expectContentType(ContentType.JSON);
-		
-		responseSpecBuilder.log(LogDetail.ALL);
-		
-	 responseSpecification = responseSpecBuilder.build();
-		
+		responseSpecification=responseSpecBuilder.expectStatusCode(200).expectContentType(ContentType.JSON).log(LogDetail.ALL).build();
 		
 		
 	}
 	
-	
-String messagevalue;
 	
 	@Test(priority = 1)
 	public void createAnUser()
 	{		
 		Response response = given()
 				
-				.spec(requestspecification)
+				.spec(requestSpecification)
 		
 		.body("{\r\n"
 				+ "  \"id\": 0,\r\n"
@@ -68,7 +57,6 @@ String messagevalue;
 				+ "  \"phone\": \"9876543213\",\r\n"
 				+ "  \"userStatus\": 0\r\n"
 				+ "}")
-		.header("Content-Type", "application/json")
 				
 		.when()
 		
@@ -95,13 +83,14 @@ String messagevalue;
 	public void getUserDetails()
 	{
 		Response response = given()
-				.spec(requestspecification)
+				
+		.spec(requestSpecification)
 		
-		.pathParam("createdusername", "restassureduserlatest")
+		.pathParam("createdUserName", "restassureduserlatest")
 		
 		.when()
 		
-		.get("/user/{createdusername}")
+		.get("/user/{createdUserName}")
 		
 		.then()
 		

@@ -13,15 +13,13 @@ public class UploadAFile {
 	@Test
 	public void uploadFile()
 	{
-		File image = new File("C:\\Users\\DELL\\Desktop\\Test product image.png");
+		File file = new File("C:\\Users\\Admin\\OneDrive\\Desktop\\June_Eve_Batch_Mock_Result_02_July.xlsx");
 		
 		RestAssured.baseURI = "https://the-internet.herokuapp.com";
 		
-		given()
+		given().log().all()
 		
-		.multiPart("file",image)
-		
-		.log().all()
+		.multiPart("file",file)
 		
 		.when()
 		

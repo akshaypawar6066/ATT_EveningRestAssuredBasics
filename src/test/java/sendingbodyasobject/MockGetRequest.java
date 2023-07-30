@@ -12,17 +12,15 @@ public class MockGetRequest {
 	@Test
 	public void getResponse()
 	{
-		RestAssured.baseURI = "https://11373eed-b49b-48ff-ba24-d24fc6c83dc8.mock.pstmn.io";
+		RestAssured.baseURI = "https://eb3a2103-4b32-4c3a-a58e-a83488263791.mock.pstmn.io";
 		
-		given()
+		given().log().all()
 		
 		.header("x-mock-response-code", "200")
 		
-		.log().all()
-		
 		.when()
 		
-		.get("/attgetcall")
+		.get("/attGetCall")
 		
 		.then()
 		

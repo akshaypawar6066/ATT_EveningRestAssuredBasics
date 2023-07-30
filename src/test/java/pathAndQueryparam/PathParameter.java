@@ -1,4 +1,4 @@
-package pathandqueryparam;
+package pathAndQueryparam;
 
 import static io.restassured.RestAssured.given;
 
@@ -7,8 +7,9 @@ import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-public class QueryParameters {
+public class PathParameter {
 	
+
 	@Test
 	public void getUserDetails()
 	{
@@ -16,15 +17,11 @@ public class QueryParameters {
 		
 							given()
 							
-							.queryParam("page", "2")
-							
-							.queryParam("line", "6")
-							
-							.log().all()
+							.pathParam("pathparameter","2")
 		
 							.when()
 		
-							.get("/api/users")
+							.get("/api/users/{pathparameter}")
 		
 							.then()
 							
@@ -33,7 +30,6 @@ public class QueryParameters {
 							.extract()
 		
 							.response();
-		
 	}
 		
 

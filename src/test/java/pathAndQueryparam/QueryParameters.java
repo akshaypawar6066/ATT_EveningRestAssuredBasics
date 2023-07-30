@@ -1,4 +1,4 @@
-package pathandqueryparam;
+package pathAndQueryparam;
 
 import static io.restassured.RestAssured.given;
 
@@ -7,9 +7,8 @@ import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-public class PathParameter {
+public class QueryParameters {
 	
-
 	@Test
 	public void getUserDetails()
 	{
@@ -17,11 +16,16 @@ public class PathParameter {
 		
 							given()
 							
-							.pathParam("pathparameter","2")
+							.queryParam("page", "2")          //don't know query params will go in this sequence or not.
+							                                 //To pass multiple query params we can use queryParams() method as well.
+							
+							.queryParam("line", "6")
+							
+							.log().all()
 		
 							.when()
 		
-							.get("/api/users/{pathparameter}")
+							.get("/api/users")
 		
 							.then()
 							
@@ -30,6 +34,7 @@ public class PathParameter {
 							.extract()
 		
 							.response();
+		
 	}
 		
 
