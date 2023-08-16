@@ -1,5 +1,7 @@
 package testData;
 
+import java.util.HashMap;
+
 public class BodyCreator {
 
 	public static String getBodyToCreateUser() {
